@@ -31,6 +31,9 @@ namespace MonolithicMvc
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(100);
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connectionString = Configuration.GetSection("ConnectionString").Value;

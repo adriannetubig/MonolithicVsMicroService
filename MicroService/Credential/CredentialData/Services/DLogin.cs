@@ -1,16 +1,17 @@
 ﻿using BaseData;
+using CredentialData.Interfaces;
+using CredentialEntity;
 using Dapper;
-using MonolithicMvc.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MonolithicMvc.Helper
+namespace CredentialData.Services
 {
-    public class DataService : DBase, IDataService
+    public class DLogin : DBase, IDLogin
     {
-        public DataService(string connectionString) : base(connectionString) { }
+        public DLogin(string connectionString) : base(connectionString) { }
 
-        public async Task Create(Login login, int createdBy)
+        public async Task Create(ELogin login, int createdBy)
         {
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@Username", login.Username);
@@ -20,27 +21,27 @@ namespace MonolithicMvc.Helper
             await Query(parameter, "[dbo].[LoginCreate]");
         }
 
-        public async Task Read()
+        public async Task<List<ELogin>> Read()
         {
             DynamicParameters parameter = new DynamicParameters();
-            await QueryModel<List<Login>>(parameter, "[dbo].[LoginReadActive]");
+            return await QueryModel<List<ELogin>>(parameter, "[dbo].[LoginReadActive]");
         }
 
-        public async Task Read(int loginId)
+        public async Task<ELogin> Read(int loginId)
         {
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@LoginId", loginId);
-            await QueryModel<Login>(parameter, "[dbo].[LoginRead]");
+            return await QueryModel<ELogin>(parameter, "[dbo].[LoginRead]");
         }
 
-        public async Task Read(string username)
+        public async Task<ELogin> Read(string username)
         {
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@Username", username);
-            await QueryModel<Login>(parameter, "[dbo].[LoginReadByUsername]");
+            return await QueryModel<ELogin>(parameter, "[dbo].[LoginReadByUsername]");
         }
 
-        public async Task Update(Login login, int updatedBy)
+        public async Task Update(ELogin login, int updatedBy)
         {
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@LoginId", login.LoginId);
@@ -50,12 +51,11 @@ namespace MonolithicMvc.Helper
             await Query(parameter, "[dbo].[LoginUpdate]");
         }
 
-        public async Task Delete(Login login, int updatedBy)
+        public async Task Delete(int loginId, int deletedBy)
         {
             DynamicParameters parameter = new DynamicParameters();
-            parameter.Add("@LoginId", login.LoginId);
-            parameter.Add("@Password", login.Password);
-            parameter.Add("@UpdatedBy", updatedBy);
+            parameter.Add("@LoginId", loginId); ;
+            parameter.Add("@DeletedBy", deletedBy);
 
             await Query(parameter, "[dbo].[LoginDelete]");
         }
