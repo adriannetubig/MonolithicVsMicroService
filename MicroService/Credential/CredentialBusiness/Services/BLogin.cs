@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 
 namespace CredentialBusiness.Services
 {
-    public class BLogin: IBLogin
+    public class BLogins: IBLogins
     {
-        private readonly IDLogin _iDLogin; 
-        public BLogin(IDLogin iDLogin)
+        private readonly IDLogins _iDLogins; 
+        public BLogins(IDLogins iDLogins)
         {
-            _iDLogin = iDLogin;
+            _iDLogins = iDLogins;
         }
 
         public async Task Create(Login login, int createdBy)
         {
             login.Password = BCrypt.Net.BCrypt.HashPassword(login.Password);
-            await _iDLogin.Create(ELogin(login), createdBy);
+            await _iDLogins.Create(ELogin(login), createdBy);
         }
 
         public async Task<List<Login>> Read()
         {
-            var eLogins = await _iDLogin.Read();
+            var eLogins = await _iDLogins.Read();
             return Logins(eLogins);
         }
 
         public async Task<Login> Read(int loginId)
         {
-            var eLogin = await _iDLogin.Read(loginId);
+            var eLogin = await _iDLogins.Read(loginId);
             return Login(eLogin);
         }
 
-        public async Task<Login> Read(Login login)
+        public async Task<Login> Authenticate(Login login)
         {
-            var eLogin = await _iDLogin.Read(login.Username);
+            var eLogin = await _iDLogins.Read(login.Username);
             if (BCrypt.Net.BCrypt.Verify(login.Password, eLogin.Password))
                 return Login(eLogin);
             else
@@ -46,15 +46,15 @@ namespace CredentialBusiness.Services
         public async Task Update(Login login, int updatedBy)
         {
             //Make sure that only the password is changed
-            var eLogin = await _iDLogin.Read(login.LoginId);
+            var eLogin = await _iDLogins.Read(login.LoginId);
             eLogin.Password = BCrypt.Net.BCrypt.HashPassword(login.Password);
 
-            await _iDLogin.Update(ELogin(login), updatedBy);
+            await _iDLogins.Update(ELogin(login), updatedBy);
         }
 
         public async Task Delete(int loginId, int deletedBy)
         {
-            await _iDLogin.Delete(loginId, deletedBy);
+            await _iDLogins.Delete(loginId, deletedBy);
         }
 
         private ELogin ELogin(Login login)
@@ -88,7 +88,6 @@ namespace CredentialBusiness.Services
                 LoginId = eLogin.LoginId,
                 UpdatedBy = eLogin.UpdatedBy,
 
-                Password = eLogin.Password,
                 Username = eLogin.Username,
             };
         }
@@ -106,7 +105,6 @@ namespace CredentialBusiness.Services
                 LoginId = a.LoginId,
                 UpdatedBy = a.UpdatedBy,
 
-                Password = a.Password,
                 Username = a.Username,
             }).ToList();
         }

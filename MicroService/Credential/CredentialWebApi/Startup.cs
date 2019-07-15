@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using BaseModel;
 using CredentialBusiness.Interfaces;
 using CredentialBusiness.Services;
@@ -15,8 +11,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CredentialWebApi
@@ -29,7 +23,6 @@ namespace CredentialWebApi
             _configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var jwtTokenSettings = _configuration.GetSection("JwtTokenSettings").Get<JwtTokenSettings>();
@@ -53,11 +46,19 @@ namespace CredentialWebApi
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", corsPolicyBuilder => corsPolicyBuilder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithOrigins(jwtTokenSettings.AllowedOrigins)
+                    .AllowCredentials());
+            });
 
-            var connectionString = _configuration.GetSection("ConnectionString").Value;
-            services.AddScoped<IDLogin>(a => new DLogin(connectionString));
-            services.AddScoped<IBLogin, BLogin>();
-            services.AddScoped<IBAuthentication>(a => new BAuthentication(jwtTokenSettings, jwtTokenValidation));
+            var connectionString = _configuration.GetConnectionString("Default");
+            services.AddScoped<IDLogins>(a => new DLogins(connectionString));
+            services.AddScoped<IBLogins, BLogins>();
+            services.AddScoped<IBAuthentications>(a => new BAuthentications(jwtTokenSettings, jwtTokenValidation));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +68,10 @@ namespace CredentialWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseAuthentication();
+
+            app.UseCors("CORS");
 
             app.UseMvc();
         }

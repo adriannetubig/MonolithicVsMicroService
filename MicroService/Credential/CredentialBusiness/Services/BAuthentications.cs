@@ -10,16 +10,16 @@ using System.Text;
 
 namespace CredentialBusiness.Services
 {
-    public class BAuthentication : IBAuthentication
+    public class BAuthentications : IBAuthentications
     {
         public JwtTokenValidation _jwtTokenValidation;
         public JwtTokenSettings _jwtTokenSettings;
-        public BAuthentication(JwtTokenSettings jwtTokenSettings, JwtTokenValidation jwtTokenValidation)
+        public BAuthentications(JwtTokenSettings jwtTokenSettings, JwtTokenValidation jwtTokenValidation)
         {
             _jwtTokenValidation = jwtTokenValidation;
             _jwtTokenSettings = jwtTokenSettings;
         }
-        public Authentication Create(string refreshToken, Login login)
+        public Authentication Create(Login login)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtTokenValidation.IssuerSigningKey));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -34,8 +34,7 @@ namespace CredentialBusiness.Services
             var authentication = new Authentication
             {
                 Expiration = _jwtTokenSettings.Expiration,
-                InvalidBefore = DateTime.UtcNow,
-                RefreshToken = refreshToken
+                InvalidBefore = DateTime.UtcNow
             };
 
             var tokenOptions = new JwtSecurityToken(

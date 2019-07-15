@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CredentialData.Services
 {
-    public class DLogin : DBase, IDLogin
+    public class DLogins : DBase, IDLogins
     {
-        public DLogin(string connectionString) : base(connectionString) { }
+        public DLogins(string connectionString) : base(connectionString) { }
 
         public async Task Create(ELogin login, int createdBy)
         {
@@ -24,7 +24,7 @@ namespace CredentialData.Services
         public async Task<List<ELogin>> Read()
         {
             DynamicParameters parameter = new DynamicParameters();
-            return await QueryModel<List<ELogin>>(parameter, "[dbo].[LoginReadActive]");
+            return await QueryList<ELogin>(parameter, "[dbo].[LoginReadActive]");
         }
 
         public async Task<ELogin> Read(int loginId)

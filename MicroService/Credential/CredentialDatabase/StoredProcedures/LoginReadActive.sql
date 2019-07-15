@@ -11,4 +11,6 @@ BEGIN
         UpdatedDate
     FROM
         Login
+    WHERE
+        DeletedBy IS NULL
 END

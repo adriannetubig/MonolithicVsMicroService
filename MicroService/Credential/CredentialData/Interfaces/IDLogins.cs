@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CredentialData.Interfaces
 {
-    public interface IDLogin
+    public interface IDLogins
     {
         Task Create(ELogin login, int createdBy);
         Task<List<ELogin>> Read();
