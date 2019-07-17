@@ -1,0 +1,18 @@
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th scope="col">loginId</th>
+        <th scope="col">createdDate</th>
+        <th scope="col">createdDate</th>
+        <th scope="col">username</th>
+    </tr>
+</thead>
+<tbody>
+<tr *ngFor="let login of Logins">
+    <td> {{ login.loginId }} </td>
+    <td> {{ login.createdBy }} </td>
+    <td> {{ login.createdDate }} </td>
+    <td> {{ login.username }} </td>
+</tr>
+</tbody>
+</table>
