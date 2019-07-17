@@ -7,15 +7,17 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginsComponent } from './logins/logins.component';
 import { AuthenticationsComponent } from './authentications/authentications.component';
+import { LoginsComponent } from './logins/logins.component';
+import { loginsCreateComponent } from './logins/loginsCreate.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthenticationsComponent,
     LoginsComponent,
-    AuthenticationsComponent
+    loginsCreateComponent
   ],
   imports: [
     BrowserModule,

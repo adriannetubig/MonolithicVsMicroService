@@ -16,16 +16,32 @@ export class LoginsService {
   constructor(private http: HttpClient, private _localStorage: LocalStorage) {
   }
 
+  async create(login: Login) {
+    return this.http.put<Login[]>(environment.url + '/api/Logins', login, await this.getHttpOptions()).toPromise().then();
+  }
+
+  async readSingle(loginId: number) {
+    return this.http.get<Login[]>(environment.url + '/api/Logins/' + loginId, await this.getHttpOptions()).toPromise().then();
+  }
+
   async read() {
     return this.http.get<Login[]>(environment.url + '/api/Logins', await this.getHttpOptions()).toPromise().then();
   }
 
-  async getToken() {
+  async update(login: Login) {
+    return this.http.post<Login[]>(environment.url + '/api/Logins', login, await this.getHttpOptions()).toPromise().then();
+  }
+
+  async delete(loginId: number) {
+    return this.http.delete<Login[]>(environment.url + '/api/Logins/' + loginId, await this.getHttpOptions()).toPromise().then();
+  }
+
+  private async getToken() {
     var authentication = await this._localStorage.getItem('Access').toPromise().then<Authentication>();
     return authentication.token;
   }
   
-  async getHttpOptions() {
+  private async getHttpOptions() {
     return {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',

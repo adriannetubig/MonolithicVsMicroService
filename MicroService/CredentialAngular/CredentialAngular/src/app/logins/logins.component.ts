@@ -17,4 +17,9 @@ export class LoginsComponent implements OnInit {
     this.Logins = await this._loginsService.read().then();
   }
 
+  async delete(loginId: number) {
+    await this._loginsService.delete(loginId).then();
+    this.Logins = await this._loginsService.read().then();
+  }
+
 }
