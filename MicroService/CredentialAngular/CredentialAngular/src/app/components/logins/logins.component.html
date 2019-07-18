@@ -1,3 +1,5 @@
+<a class="btn btn-primary" routerLink="/logins/create">Create</a>
+
 <table class="table table-striped">
 <thead>
     <tr>
@@ -10,7 +12,9 @@
 </thead>
 <tbody>
 <tr *ngFor="let login of Logins">
-    <td> {{ login.loginId }} </td>
+    <td> 
+        <a routerLink="/logins/update/{{login.loginId}}">{{login.loginId}}</a>
+    </td>
     <td> {{ login.createdBy }} </td>
     <td> {{ login.createdDate }} </td>
     <td> {{ login.username }} </td>
