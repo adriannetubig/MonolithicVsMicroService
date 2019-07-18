@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { HttpHeaders } from '@angular/common/http';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 
 import { Authentication } from '../shared/models/authentication';
 import { Login } from '../shared/models/login';
@@ -21,7 +21,7 @@ export class LoginsService {
   }
 
   async readSingle(loginId: number) {
-    return this.http.get<Login[]>(environment.url + '/api/Logins/' + loginId, await this.getHttpOptions()).toPromise().then();
+    return this.http.get<Login>(environment.url + '/api/Logins/' + loginId, await this.getHttpOptions()).toPromise().then();
   }
 
   async read() {

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router"
 
-import { LoginsService } from './logins.service';
+import { LoginsService } from '../../services/logins.service';
 
-import { Login } from '../shared/models/login';
+import { Login } from '../../shared/models/login';
 
 @Component({
   selector: 'app-logins',
   templateUrl: './loginsCreateUpdate.component.html',
-  styleUrls: ['./logins.component.less']
 })
 
 export class loginsCreateComponent implements OnInit {

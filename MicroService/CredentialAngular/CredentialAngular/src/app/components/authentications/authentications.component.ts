@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
-import { AuthenticationsService } from './authentications.service';
+import { AuthenticationsService } from '../../services/authentications.service';
 
-import { Authentication } from '../shared/models/authentication';
-import { Login } from '../shared/models/login';
+import { Authentication } from '../../shared/models/authentication';
+import { Login } from '../../shared/models/login';
 
 @Component({
   selector: 'app-authentications',

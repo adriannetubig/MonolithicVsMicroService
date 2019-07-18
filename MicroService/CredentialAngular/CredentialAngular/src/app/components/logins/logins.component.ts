@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../shared/models/login';
+import { Login } from '../../shared/models/login';
 
-import { LoginsService } from './logins.service';
+import { LoginsService } from '../../services/logins.service';
 
 @Component({
   selector: 'app-logins',

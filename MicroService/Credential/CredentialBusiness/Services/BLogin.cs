@@ -49,7 +49,7 @@ namespace CredentialBusiness.Services
             var eLogin = await _iDLogins.Read(login.LoginId);
             eLogin.Password = BCrypt.Net.BCrypt.HashPassword(login.Password);
 
-            await _iDLogins.Update(ELogin(login), updatedBy);
+            await _iDLogins.Update(eLogin, updatedBy);
         }
 
         public async Task Delete(int loginId, int deletedBy)
