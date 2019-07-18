@@ -3,6 +3,8 @@
 AS
 BEGIN
     SELECT
+        LoginId,
+        Username,
         Password
     FROM
         Login

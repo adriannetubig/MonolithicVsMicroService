@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Logins";
+}
+
+<h1>Logins</h1>
+<a href="/LoginsCreate" class="btn btn-primary">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>LoginId</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>CreatedDate</th>
+            <th>CreatedBy</th>
+            <th>UpdatedDate</th>
+            <th>UpdatedBy</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var login in Model)
+        {
+        <tr>
+            <td>
+                <a href="/LoginsUpdate/@login.LoginId">@login.LoginId</a>
+            </td>
+            <td>@login.Username</td>
+            <td>@login.Password</td>
+            <td>@login.CreatedDate</td>
+            <td>@login.CreatedBy</td>
+            <td>@login.UpdatedDate</td>
+            <td>@login.UpdatedBy</td>
+            <td>
+                <a href="/LoginsDelete/@login.LoginId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

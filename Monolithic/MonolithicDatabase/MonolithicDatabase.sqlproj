@@ -67,4 +67,7 @@
     <Build Include="StoredProcedure\LoginReadActive.sql" />
     <Build Include="StoredProcedure\LoginReadByUsername.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
 </Project>
