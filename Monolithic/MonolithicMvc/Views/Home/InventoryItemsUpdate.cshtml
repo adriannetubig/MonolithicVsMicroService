@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "InventoryItemUpdate";
+}
+<div>
+    <form method="post" action="/InventoryItemsUpdate">
+        <div class="form-group">
+            <label for="username">InventoryName</label>
+            <input type="text" class="form-control" name="inventoryName" id="inventoryName" placeholder="InventoryName" value="@Model.InventoryName">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="hidden" name="inventoryItemId" value="@Model.InventoryItemId">
+    </form>
+</div>

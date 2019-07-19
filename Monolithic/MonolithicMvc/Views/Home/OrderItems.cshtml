@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "OrderItems";
+}
+
+<h1>OrderItems</h1>
+<a href="/OrderItemsCreate" class="btn btn-primary">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>OrderItemId</th>
+            <th>OrderName</th>
+            <th>CreatedDate</th>
+            <th>CreatedBy</th>
+            <th>UpdatedDate</th>
+            <th>UpdatedBy</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderItem in Model)
+        {
+        <tr>
+            <td>
+                <a href="/OrderItemsUpdate/@orderItem.OrderItemId">@orderItem.OrderItemId</a>
+            </td>
+            <td>@orderItem.OrderName</td>
+            <td>@orderItem.CreatedDate</td>
+            <td>@orderItem.CreatedBy</td>
+            <td>@orderItem.UpdatedDate</td>
+            <td>@orderItem.UpdatedBy</td>
+            <td>
+                <a href="/OrderItemsDelete/@orderItem.OrderItemId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

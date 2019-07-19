@@ -46,6 +46,13 @@ namespace MonolithicMvc.Controllers
             return RedirectToAction("Logins");
         }
 
+        [HttpGet("Logins")]
+        public async Task<IActionResult> Logins()
+        {
+            var logins = await _iDataService.LoginsRead();
+            return View(logins);
+        }
+
         [HttpGet("LoginsUpdate/{loginId}")]
         public async Task<IActionResult> LoginsUpdate(int loginId)
         {
@@ -62,7 +69,6 @@ namespace MonolithicMvc.Controllers
             return RedirectToAction("Logins");
         }
 
-
         [HttpGet("LoginsDelete/{loginId}")]
         public async Task<IActionResult> LoginsDelete(int loginId)
         {
@@ -70,11 +76,92 @@ namespace MonolithicMvc.Controllers
             return RedirectToAction("Logins");
         }
 
-        [HttpGet("Logins")]
-        public async Task<IActionResult> Logins()
+        [HttpGet("InventoryItemsCreate")]
+        public IActionResult InventoryItemsCreate()
         {
-            var logins = await _iDataService.LoginsRead();
-            return View(logins);
+            var inventoryItem = new InventoryItem();
+            return View(inventoryItem);
+        }
+
+        [HttpPost("InventoryItemsCreate")]
+        public async Task<IActionResult> InventoryItemsCreate(InventoryItem inventoryItem)
+        {
+            await _iDataService.InventoryItemsCreate(inventoryItem, LoginId);
+            return RedirectToAction("InventoryItems");
+        }
+
+        [HttpGet("InventoryItems")]
+        public async Task<IActionResult> InventoryItems()
+        {
+            var inventoryItems = await _iDataService.InventoryItemsRead();
+            return View(inventoryItems);
+        }
+
+        [HttpGet("InventoryItemsUpdate/{inventoryItemId}")]
+        public async Task<IActionResult> InventoryItemsUpdate(int inventoryItemId)
+        {
+            var inventoryItem = await _iDataService.InventoryItemsRead(inventoryItemId);
+            return View(inventoryItem);
+        }
+
+        [HttpPost("InventoryItemsUpdate")]
+        public async Task<IActionResult> InventoryItemsUpdate(InventoryItem inventoryItem)
+        {
+            var eInventoryItem = await _iDataService.InventoryItemsRead(inventoryItem.InventoryItemId);
+            eInventoryItem.InventoryName = inventoryItem.InventoryName;
+            await _iDataService.InventoryItemsUpdate(eInventoryItem, LoginId);
+            return RedirectToAction("InventoryItems");
+        }
+
+        [HttpGet("InventoryItemsDelete/{inventoryItemId}")]
+        public async Task<IActionResult> InventoryItemsDelete(int inventoryItemId)
+        {
+            await _iDataService.InventoryItemsDelete(inventoryItemId, LoginId);
+            return RedirectToAction("InventoryItems");
+        }
+
+        [HttpGet("OrderItemsCreate")]
+        public IActionResult OrderItemsCreate()
+        {
+            var orderItem = new OrderItem();
+            return View(orderItem);
+        }
+
+        [HttpPost("OrderItemsCreate")]
+        public async Task<IActionResult> OrderItemsCreate(OrderItem orderItem)
+        {
+            await _iDataService.OrderItemsCreate(orderItem, LoginId);
+            return RedirectToAction("OrderItems");
+        }
+
+        [HttpGet("OrderItems")]
+        public async Task<IActionResult> OrderItems()
+        {
+            var orderItems = await _iDataService.OrderItemsRead();
+            return View(orderItems);
+        }
+
+        [HttpGet("OrderItemsUpdate/{orderItemId}")]
+        public async Task<IActionResult> OrderItemsUpdate(int orderItemId)
+        {
+            var orderItem = await _iDataService.OrderItemsRead(orderItemId);
+            return View(orderItem);
+        }
+
+        [HttpPost("OrderItemsUpdate")]
+        public async Task<IActionResult> OrderItemsUpdate(OrderItem orderItem)
+        {
+            var eOrderItem = await _iDataService.OrderItemsRead(orderItem.OrderItemId);
+            eOrderItem.OrderName = orderItem.OrderName;
+            await _iDataService.OrderItemsUpdate(eOrderItem, LoginId);
+            return RedirectToAction("OrderItems");
+        }
+
+        [HttpGet("OrderItemsDelete/{orderItemId}")]
+        public async Task<IActionResult> OrderItemsDelete(int orderItemId)
+        {
+            await _iDataService.OrderItemsDelete(orderItemId, LoginId);
+            return RedirectToAction("OrderItems");
         }
 
         private int LoginId

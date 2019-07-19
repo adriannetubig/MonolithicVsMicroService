@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "InventoryItemCreate";
+}
+<div>
+    <form method="post" action="/InventoryItemsCreate">
+        <div class="form-group">
+            <label for="username">InventoryName</label>
+            <input type="text" class="form-control" name="inventoryName" id="inventoryName" placeholder="InventoryName" value="@Model.InventoryName">
+        </div>
+    </form>
+</div>

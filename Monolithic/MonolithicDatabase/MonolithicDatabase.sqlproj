@@ -66,6 +66,18 @@
     <Build Include="StoredProcedure\LoginRead.sql" />
     <Build Include="StoredProcedure\LoginReadActive.sql" />
     <Build Include="StoredProcedure\LoginReadByUsername.sql" />
+    <Build Include="StoredProcedure\InventoryItemCreate.sql" />
+    <Build Include="StoredProcedure\InventoryItemDelete.sql" />
+    <Build Include="StoredProcedure\InventoryItemRead.sql" />
+    <Build Include="StoredProcedure\InventoryItemReadAll.sql" />
+    <Build Include="StoredProcedure\InventoryItemUpdate.sql" />
+    <Build Include="StoredProcedure\OrderItemUpdate.sql" />
+    <Build Include="StoredProcedure\OrderItemCreate.sql" />
+    <Build Include="StoredProcedure\OrderItemDelete.sql" />
+    <Build Include="StoredProcedure\OrderItemRead.sql" />
+    <Build Include="StoredProcedure\OrderItemReadAll.sql" />
+    <Build Include="InventoryItem.sql" />
+    <Build Include="OrderItem.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

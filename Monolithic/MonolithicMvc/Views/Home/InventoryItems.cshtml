@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "InventoryItems";
+}
+
+<h1>InventoryItems</h1>
+<a href="/InventoryItemsCreate" class="btn btn-primary">Create</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>InventoryItemId</th>
+            <th>InventoryName</th>
+            <th>CreatedDate</th>
+            <th>CreatedBy</th>
+            <th>UpdatedDate</th>
+            <th>UpdatedBy</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inventoryItem in Model)
+        {
+        <tr>
+            <td>
+                <a href="/InventoryItemsUpdate/@inventoryItem.InventoryItemId">@inventoryItem.InventoryItemId</a>
+            </td>
+            <td>@inventoryItem.InventoryName</td>
+            <td>@inventoryItem.CreatedDate</td>
+            <td>@inventoryItem.CreatedBy</td>
+            <td>@inventoryItem.UpdatedDate</td>
+            <td>@inventoryItem.UpdatedBy</td>
+            <td>
+                <a href="/InventoryItemsDelete/@inventoryItem.InventoryItemId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

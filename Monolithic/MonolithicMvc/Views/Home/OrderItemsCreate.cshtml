@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "OrderItemCreate";
+}
+<div>
+    <form method="post" action="/OrderItemsCreate">
+        <div class="form-group">
+            <label for="username">OrderName</label>
+            <input type="text" class="form-control" name="orderName" id="orderName" placeholder="OrderName" value="@Model.OrderName">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

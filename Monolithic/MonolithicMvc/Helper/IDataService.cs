@@ -12,5 +12,17 @@ namespace MonolithicMvc.Helper
         Task<Login> LoginsRead(string username);
         Task LoginsUpdate(Login login, int updatedBy);
         Task LoginsDelete(int loginId, int deletedBy);
+
+        Task InventoryItemsCreate(InventoryItem inventoryItem, int createdBy);
+        Task<List<InventoryItem>> InventoryItemsRead();
+        Task<InventoryItem> InventoryItemsRead(int inventoryItemId);
+        Task InventoryItemsUpdate(InventoryItem inventoryItem, int updatedBy);
+        Task InventoryItemsDelete(int inventoryItemId, int deletedBy);
+
+        Task OrderItemsCreate(OrderItem orderItem, int createdBy);
+        Task<List<OrderItem>> OrderItemsRead();
+        Task<OrderItem> OrderItemsRead(int orderItemId);
+        Task OrderItemsUpdate(OrderItem orderItem, int updatedBy);
+        Task OrderItemsDelete(int orderItemId, int deletedBy);
     }
 }
