@@ -1,0 +1,26 @@
+<a class="btn btn-primary" routerLink="/inventoryItems/create">Create</a>
+
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th scope="col">inventoryItemId</th>
+        <th scope="col">createdDate</th>
+        <th scope="col">createdDate</th>
+        <th scope="col">InventoryName</th>
+        <th scope="col">delete</th>
+    </tr>
+</thead>
+<tbody>
+<tr *ngFor="let inventoryItem of InventoryItems">
+    <td> 
+        <a routerLink="/inventoryItems/update/{{inventoryItem.inventoryItemId}}">{{inventoryItem.inventoryItemId}}</a>
+    </td>
+    <td> {{ inventoryItem.createdBy }} </td>
+    <td> {{ inventoryItem.createdDate }} </td>
+    <td> {{ inventoryItem.inventoryName }} </td>
+    <td>
+        <button class="btn btn-primary" (click)="delete(inventoryItem.inventoryItemId);">Delete</button>
+    </td>
+</tr>
+</tbody>
+</table>
