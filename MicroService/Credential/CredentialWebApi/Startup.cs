@@ -51,7 +51,7 @@ namespace CredentialWebApi
                 options.AddPolicy("CORS", corsPolicyBuilder => corsPolicyBuilder
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .WithOrigins(jwtTokenSettings.AllowedOrigins)
+                    .WithOrigins(jwtTokenValidation.AllowedOrigins)
                     .AllowCredentials());
             });
 

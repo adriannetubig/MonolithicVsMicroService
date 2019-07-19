@@ -6,6 +6,5 @@ namespace CredentialModel
     {
         public DateTime Expiration => DateTime.UtcNow.AddMinutes(ExpiresMinutes);
         public double ExpiresMinutes { get; set; }
-        public string[] AllowedOrigins { get; set; }
     }
 }
