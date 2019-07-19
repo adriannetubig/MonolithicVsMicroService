@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "23943edb-2b80-49d4-b613-58595d683da5",
+		"name": "MicroService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Credential",
+			"item": [
+				{
+					"name": "Logins",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"username\":\"{{$timestamp}}\",\r\n   \"password\":\"password\"\r\n} "
+								},
+								"url": {
+									"raw": "{{CredentialUrl}}/api/Logins",
+									"host": [
+										"{{CredentialUrl}}"
+									],
+									"path": [
+										"api",
+										"Logins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{CredentialUrl}}/api/Logins",
+									"host": [
+										"{{CredentialUrl}}"
+									],
+									"path": [
+										"api",
+										"Logins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read Single",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{CredentialUrl}}/api/Logins/2",
+									"host": [
+										"{{CredentialUrl}}"
+									],
+									"path": [
+										"api",
+										"Logins",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"loginId\": 2,\r\n   \"username\":\"{{$timestamp}}\",\r\n   \"password\":\"password\"\r\n} "
+								},
+								"url": {
+									"raw": "{{CredentialUrl}}/api/Logins",
+									"host": [
+										"{{CredentialUrl}}"
+									],
+									"path": [
+										"api",
+										"Logins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{CredentialUrl}}/api/Logins/2",
+									"host": [
+										"{{CredentialUrl}}"
+									],
+									"path": [
+										"api",
+										"Logins",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c877110a-0d01-4dbb-8641-e98da8761a09",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2fb47c7-f008-4ac5-8e13-814bbc17e52b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Authentications",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bb8c3f4a-125b-40bc-8571-08d90b816774",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"Token\", jsonData.token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Authorization}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"username\":\"username\",\r\n   \"password\":\"password\"\r\n} "
+								},
+								"url": {
+									"raw": "{{CredentialUrl}}/api/Authentications",
+									"host": [
+										"{{CredentialUrl}}"
+									],
+									"path": [
+										"api",
+										"Authentications"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Warehouse",
+			"item": [
+				{
+					"name": "InventoryItems",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"inventoryname\":\"{{$timestamp}}\"\r\n} "
+								},
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/InventoryItems",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"InventoryItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/InventoryItems",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"InventoryItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read Single",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/InventoryItems/1",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"InventoryItems",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"inventoryItemId\": 1,\r\n   \"inventoryName\":\"{{$timestamp}}\"\r\n} "
+								},
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/InventoryItems",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"InventoryItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/InventoryItems/1",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"InventoryItems",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c877110a-0d01-4dbb-8641-e98da8761a09",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2fb47c7-f008-4ac5-8e13-814bbc17e52b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "OrderItems",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"orderName\":\"{{$timestamp}}\"\r\n} "
+								},
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/OrderItems",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"OrderItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/OrderItems",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"OrderItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read Single",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/OrderItems/1",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"OrderItems",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"orderItemId\": 1,\r\n   \"inventoryName\":\"{{$timestamp}}\"\r\n} "
+								},
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/OrderItems",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"OrderItems"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer  {{Token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{WarehouseUrl}}/api/OrderItems/1",
+									"host": [
+										"{{WarehouseUrl}}"
+									],
+									"path": [
+										"api",
+										"OrderItems",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c877110a-0d01-4dbb-8641-e98da8761a09",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2fb47c7-f008-4ac5-8e13-814bbc17e52b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
